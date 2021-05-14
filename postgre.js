@@ -20,4 +20,3 @@ module.exports = {
         return await client.query(`INSERT INTO superheros VALUES($1, $2, $3, $4, $5)`, [nick_name, real_name, origin_description, superpowers, catch_phrase]).catch(e => ({ error: e.message }));
     }
 }
-module.exports.getAll().then(response => console.log(response));

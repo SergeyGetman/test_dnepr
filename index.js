@@ -3,6 +3,8 @@ const express = require("express");
 const path = require('path');
 const bodyParser = require('body-parser');
 const root = path.resolve(__dirname);
+const fetch = require("node-fetch");
+const { response } = require('express');
 
 const bookrouter = express.Router();
 const app = express(); // it's working 
@@ -21,9 +23,13 @@ app.get("/style.css", (req, res, next) => {
     res.sendFile(`${root}/style.css`);
 });
 
+app.get("/app.js", (req, res, next) => {
+    res.sendFile(`${root}/app.js`);
+});
+
 
 app.get('/heroes', (req, response) => {
-    db.getData().then(res => response.send(res))
+    db.getAll().then(res => response.send(res))
 });
 
 app.get('/downloadBooks', (req, res, next) => {
@@ -49,17 +55,25 @@ app.post('/add', async(request, response) => {
     response.send(q);
 });
 
+let regEpx = /\/hero\/([W-w]+)/
+app.get(regEpx, (req, res) => {
+    db.getAll().then(allHeroes => {
+        let name = req.path.split("/")[2];
+        for (let elem of allHeroes) {
+            if (elem.nick_name == name) {
+                res.send(elem);
+                return;
+            }
+        }
+
+        res.send(404);
+    });
 
 
-// fetch("http://localhost:5000/add", {
-//     method: "POST", 
-//     body: JSON.stringify({nick_name: 'betman',
-//                           real_name : "bruse",
-//                           origin_description : "mouse drop, and nedo fly",
-//                           superpowers: "prugat s 9-i eta)!(ki",
-//                           catch_phrase: "go dibil go"
-// }),
-//     headers: {'Content-Type': 'application/json'}
-// });
+
+
+    //  res.sendFile(root + req.path);
+});
+
 
 // db.addHero("popld", "asdqwe", "asdqweqew", "Asdqwe", "asdqwe"); // add hero
