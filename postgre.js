@@ -12,7 +12,8 @@ client.connect();
 
 module.exports = {
     async getAll() { // read
-        return await client.query('select * from superheros').then(r => r.rows);
+        return (await client.query('select * from superheros').then(r => r.rows))
+            .map((elem, index) => { elem['images'] = `/images/${elem.nick_name}.jpg`; return elem });
     },
 
     async addHero(fields) { // read

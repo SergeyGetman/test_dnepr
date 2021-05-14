@@ -35,22 +35,10 @@ async function getAll() {
 }
 
 getAll().then(array => {
-    // for (let i = 0; i < array.length; i++) {
-    //     let tr = document.createElement('tr');
-    //     let td = document.createElement('td');
-    //     document.querySelector("tbody").appendChild(tr);
-    //     document.querySelector("tbody").innerHTML += array[i].nick_name + '\n' +
-    //         array[i].real_name + " ";
-    // }
 
-    // console.log(array);
-    // let tr = document.createElement('tr');
 
-    // for (let i = 0; i < 5; i++) {
-    //     let td = document.createElement('td');
-    //     tr.appendChild(td);
-    //     td.innerHTML += array[i].nick_name + "\n";
-    // }
+    console.log(array);
+
     for (let hero of array) {
         document.querySelector("tbody").innerHTML += `<tr>
             <td>${hero.nick_name}</td>
@@ -58,10 +46,11 @@ getAll().then(array => {
             <td>${hero.origin_description}</td>
             <td>${hero.superpowers}</td>
             <td>${hero.catch_phrase}</td>
-        <td></td>
+        <td><img height=160 src="${hero.images}"></td>
         </tr>`
     }
-
-
-
 })
+
+//images 
+let arrImages = ['superman.png', 'spiderman.jpg', 'hulk.jpg', 'batman.jpg', 'iron-man.jpg'];
+console.log(arrImages);
