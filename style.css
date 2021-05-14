@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(145, 241, 229);
+}
+
+.tools {
+    height: 100px;
+    width: 150px;
+    background-color: black;
+    margin: 5px;
+    color: wheat;
+}
+
+table {
+    border: 5px solid rgb(87, 47, 47);
+    width: 90%;
+}
+
+.images_logo {
+    width: 20%;
+}
+
+td,
+th {
+    border: 1px solid black;
+    color: rgb(248, 250, 245);
+    background-color: darkslategrey;
+}
+
+#superman {
+    background-image: url("images/superman.png");
+    background-size: 105%;
+}
+
+#btn {
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 80%;
+    cursor: pointer;
+}
+
+#btn:hover {
+    background-color: black;
+    color: rgb(245, 243, 241);
+}
